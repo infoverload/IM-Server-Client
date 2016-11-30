@@ -1,9 +1,3 @@
-FILES: imserver.java
-	   imclient.java
-	   
-AUTHOR: Daisy Tsang
-
-*********************************************************************************************************
 
 *DESCRIPTION*
 
@@ -46,38 +40,70 @@ The program should run according to the protocol outlined below.
 A client is in one of three states: 
 - CONNECTING
 - CONNECTED
-- DISCONNECTING
+- DISCONNECTING
 
-When a client first connects to the server, it is in the CONNECTING state.
-CONNECTING
-The server sends a message to the client of the form:
-        ID
-where:
- - ID is a positive integer represented as a string. It indicates the client's "ID" on the server.
-The client is considered in the CONNECTED state.
-
-CONNECTED
-The connection is idle until the server sends a message to the client (a)
-or the client sends a message to the server (b or c).
-
-a. The server sends a message to the client of the form:
-        ID " " MSG
-where:
- - ID is a positive integer represented as a string. It indicates the ID of the sender of the message.
- - between the ID and MSG is a space character
- - MSG is a string (ASCII text) of ANY length. It is terminated by a null character, but not a newline.
-
-b. The client sends a message to the server of the form:
-        ID " " MSG
-formatted as described above in (a). In this case, ID refers to the RECEIVER of the message (not the sender).
-
-c. The client sends a message to the server of the form:
-        QUIT
-where QUIT is literally the ASCII string "QUIT".
-The client is considered in the DISCONNECTING state.
-
-DISCONNECTING
-No communication takes place in the DISCONNECTING state. 
+
+When a client first connects to the server, it is in the CONNECTING state.
+
+
+CONNECTING
+
+The server sends a message to the client of the form:
+
+        ID
+
+where:
+
+ - ID is a positive integer represented as a string. It indicates the client's "ID" on the server.
+
+The client is considered in the CONNECTED state.
+
+
+
+CONNECTED
+
+The connection is idle until the server sends a message to the client (a)
+
+or the client sends a message to the server (b or c).
+
+
+
+a. The server sends a message to the client of the form:
+
+        ID " " MSG
+
+where:
+
+ - ID is a positive integer represented as a string. It indicates the ID of the sender of the message.
+
+ - between the ID and MSG is a space character
+
+ - MSG is a string (ASCII text) of ANY length. It is terminated by a null character, but not a newline.
+
+
+
+b. The client sends a message to the server of the form:
+
+        ID " " MSG
+
+formatted as described above in (a). In this case, ID refers to the RECEIVER of the message (not the sender).
+
+
+
+c. The client sends a message to the server of the form:
+
+        QUIT
+
+where QUIT is literally the ASCII string "QUIT".
+
+The client is considered in the DISCONNECTING state.
+
+
+
+DISCONNECTING
+
+No communication takes place in the DISCONNECTING state. 
+
 The server and client are free to close their sockets.
 
 *************************************************************************************************************
